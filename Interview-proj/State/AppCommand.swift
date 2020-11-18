@@ -21,26 +21,36 @@ struct LoadEndpointCommand: AppCommand {
 		fetchHistory.sortDescriptors = [NSSortDescriptor(keyPath: \History.date, ascending: false)]
 		fetchHistory.fetchLimit = 1
 		
-		let fetchEndpoint: NSFetchRequest<Endpoint> = Endpoint.fetchRequest()
-		fetchEndpoint.sortDescriptors = [NSSortDescriptor(keyPath: \Endpoint.name, ascending: true)]
+		
 		let ctx = CoreDataManager.shared.managedObjectContext
-		ctx.perform {
+		
+		let asyncFetchHistory = NSAsynchronousFetchRequest(fetchRequest: fetchHistory) { result in
+			guard let history = result.finalResult?.first else { return }
+			
+			let fetchEndpoint: NSFetchRequest<Endpoint> = Endpoint.fetchRequest()
+			fetchEndpoint.sortDescriptors = [NSSortDescriptor(keyPath: \Endpoint.name, ascending: true)]
+			fetchEndpoint.predicate = NSPredicate(format: "from = %@", history)
+			
+			let asyncFetchEndpoint = NSAsynchronousFetchRequest(fetchRequest: fetchEndpoint) { result in
+				store.dispatch(.loadEndpointComplete(.success(result.finalResult ?? [])))
+			}
+			
 			do {
-				guard let history = try ctx.fetch(fetchHistory).first else { return }
+				try ctx.execute(asyncFetchEndpoint)
 				
-				fetchEndpoint.predicate = NSPredicate(format: "from = %@", history)
-				let ep = try ctx.fetch(fetchEndpoint)
-				
-				store.dispatch(.loadEndpointComplete(.success(ep)))
 			} catch {
-				
 				store.dispatch(.loadEndpointComplete(.failure(.databaseError)))
-				
 			}
 		}
-				
-			
 		
+		do {
+			try ctx.execute(asyncFetchHistory)
+		} catch {
+			
+			store.dispatch(.loadEndpointComplete(.failure(.databaseError)))
+			
+		}
+
 	}
 }
 
@@ -49,13 +59,14 @@ struct LoadHistoryCommand: AppCommand {
 		let fetchRequest: NSFetchRequest<History> = History.fetchRequest()
 		fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \History.date, ascending: false)]
 		let ctx = CoreDataManager.shared.managedObjectContext
-		ctx.perform {
-			do {
-				let historeis = try ctx.fetch(fetchRequest)
-				store.dispatch(.loadHistoryComplete(.success(historeis)))
-			} catch {
-				store.dispatch(.loadHistoryComplete(.failure(.databaseError)))
-			}
+
+		let asyncRequst = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { result in
+			store.dispatch(.loadHistoryComplete(.success(result.finalResult ?? [])))
+		}
+		do {
+			try ctx.execute(asyncRequst)
+		} catch {
+			store.dispatch(.loadHistoryComplete(.failure(.databaseError)))
 		}
 		
 	}
