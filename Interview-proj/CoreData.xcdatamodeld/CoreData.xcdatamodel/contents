@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Endpoint" representedClassName="Endpoint" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="String"/>
+        <relationship name="from" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="History" inverseName="endpoint" inverseEntity="History"/>
+    </entity>
+    <entity name="History" representedClassName="History" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="success" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="endpoint" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Endpoint" inverseName="from" inverseEntity="Endpoint"/>
+    </entity>
+    <elements>
+        <element name="Endpoint" positionX="139.3060913085938" positionY="-94.66702270507812" width="128" height="88"/>
+        <element name="History" positionX="-63" positionY="-18" width="128" height="74"/>
+    </elements>
+</model>
