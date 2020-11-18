@@ -9,6 +9,7 @@ import Foundation
 
 enum AppError: Error, Equatable {
 	case unknown
+	case jsonDecodeError
 	case networkfail
 	case databaseError
 }
@@ -18,6 +19,8 @@ extension AppError {
 		switch self {
 		case .unknown:
 			return "Unknown Error"
+		case .jsonDecodeError:
+			return "JSON Decode Error"
 		case .databaseError:
 			return "Database Error"
 		case .networkfail:

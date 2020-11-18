@@ -34,6 +34,8 @@
 		97AEBEA92563B1A70036E429 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEBEA82563B1A70036E429 /* AppState.swift */; };
 		97AEBEAE2563B2E50036E429 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEBEAD2563B2E50036E429 /* AppAction.swift */; };
 		97AEBEB62563B37C0036E429 /* EndpointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AEBEB52563B37C0036E429 /* EndpointRow.swift */; };
+		97C5A52E25654CEA00438B13 /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5A52D25654CEA00438B13 /* GithubAPI.swift */; };
+		97C5A5362565540D00438B13 /* CoredataContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5A5352565540D00438B13 /* CoredataContentStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		97AEBEA82563B1A70036E429 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		97AEBEAD2563B2E50036E429 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		97AEBEB52563B37C0036E429 /* EndpointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointRow.swift; sourceTree = "<group>"; };
+		97C5A52D25654CEA00438B13 /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
+		97C5A5352565540D00438B13 /* CoredataContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataContentStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 		97AEBE292563A4060036E429 /* Interview-proj */ = {
 			isa = PBXGroup;
 			children = (
+				97C5A52C25654CD800438B13 /* Data */,
 				97AEBEA72563B19B0036E429 /* State */,
 				97AEBE722563AAE40036E429 /* Models */,
 				97AEBE692563AA330036E429 /* View */,
@@ -213,6 +218,15 @@
 				973EC34A2563BDDC00A9A9F7 /* AppError.swift */,
 			);
 			path = State;
+			sourceTree = "<group>";
+		};
+		97C5A52C25654CD800438B13 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				97C5A52D25654CEA00438B13 /* GithubAPI.swift */,
+				97C5A5352565540D00438B13 /* CoredataContentStore.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,10 +370,12 @@
 				973EC3462563BBCB00A9A9F7 /* AppCommand.swift in Sources */,
 				97AEBE5F2563A8480036E429 /* CoreData.xcdatamodeld in Sources */,
 				97AEBEA92563B1A70036E429 /* AppState.swift in Sources */,
+				97C5A52E25654CEA00438B13 /* GithubAPI.swift in Sources */,
 				97AEBEA22563B0020036E429 /* History+CoreDataClass.swift in Sources */,
 				97AEBE2B2563A4060036E429 /* AppDelegate.swift in Sources */,
 				97AEBE872563ABB70036E429 /* HistoryView.swift in Sources */,
 				97AEBEA02563B0020036E429 /* Endpoint+CoreDataClass.swift in Sources */,
+				97C5A5362565540D00438B13 /* CoredataContentStore.swift in Sources */,
 				97AEBE7F2563AB4E0036E429 /* Store.swift in Sources */,
 				97AEBE2D2563A4060036E429 /* SceneDelegate.swift in Sources */,
 				97AEBE2F2563A4060036E429 /* MainView.swift in Sources */,
