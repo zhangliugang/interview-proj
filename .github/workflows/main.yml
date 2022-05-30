@@ -8,3 +8,15 @@ jobs:
     steps:
       - name: Print the input tag to STDOUT
         run: echo  The tags are ${{ github.event.inputs.tags }} 
+        
+      - if: ${{ github.event.inputs.tags == '' }}
+        run: |
+          APK_NAME=iopay-master.apk
+          echo "APK_NAME=$APK_NAME" >> $GITHUB_ENV
+    
+      - if: ${{ github.event.inputs.tags != '' }}
+        run: |
+          APK_NAME=iopay-${{ github.event.inputs.tags }}.apk
+          echo "APK_NAME=$APK_NAME" >> $GITHUB_ENV
+        
+      - run: echo ${{ env.APK_NAME }}
