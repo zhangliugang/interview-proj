@@ -3,7 +3,7 @@ on:
     inputs:
       tags:
         description: 'Suffix (app will be named iopay-{suffux}.apk)'
-        required: true 
+        required: false 
         type: string
         
 jobs:
