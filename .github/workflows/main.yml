@@ -1,10 +1,15 @@
 on:
   workflow_dispatch:
-
+    inputs:
+      tags:
+        description: 'Suffix (app will be named iopay-{suffux}.apk)'
+        required: true 
+        type: string
+        
 jobs:
   print-tag:
     runs-on: ubuntu-latest
-    if:  ${{ github.event.inputs.print_tags == 'true' }} 
+#     if:  ${{ github.event.inputs.print_tags == 'true' }} 
     steps:
       - name: Print the input tag to STDOUT
         run: echo  The tags are ${{ github.event.inputs.tags }} 
